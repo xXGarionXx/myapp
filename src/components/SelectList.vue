@@ -4,7 +4,7 @@
         <!-- Dropdown -->
         <div class="row">
             <div class="col-md-12">
-                <select class="form-select inputborder" aria-label="Default select example" id="listItems" name="listItems">
+                <select class="form-select inputborder" aria-label="Default select example" id="listItems" @change="selectListItem" v-model="currentList">
                     <option v-for="(item, index) in ListItem" :key="index">{{item.listname}}</option>
                 </select>
             </div>
@@ -30,7 +30,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-header" id="listModalHeader">New List</h5>
+                        <h5 class="modal-header" id="listModalHeader">Add a new List</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -45,7 +45,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >Save List</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="addNewList" >Save List</button>
                     </div>
                 </div>
             </div>
@@ -59,15 +59,52 @@ export default {
     name: 'SelectList.vue',
     data() {
         return {
-            newList: ''
+            newList: '',
+            currentList: ''
         }
     },
     computed: {
         ListItem() {
             return this.$store.state.DailyTodos.list;
         }
+    },
+
+    beforeMount: 
+        function transferdata() {
+            this.currentList = this.$store.state.DailyTodos.list[0].listname;
+        },
+        async function() {
+
+        },
+
+    methods: {
+        addNewList() {
+            if(this.newList == '') {
+                alert("an error occured with saving the list!");
+            }
+            else {
+                this.$store.commit('addNewList', this.newList);
+                this.currentList = this.newList;
+                this.newList = '';
+            }
+            
+        },
+
+        selectListItem() {
+            this.$store.commit('selectListItem', this.currentList);
+        },
+
+        deleteList() {
+            console.log("delete" + this.currentList);
+            this.$store.commit('deleteList', this.currentList);
+            alert("Soll diese liste wirklich gelöscht werden" + this.currentList);
+            this.currentList = this.$store.state.DailyTodos.list[0].listname;
+        }
+
     }
 }
+
+
 </script>
 
 <style lang="less" scoped>

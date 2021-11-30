@@ -8,6 +8,11 @@
 
         <main>
             <SelectList />
+            
+            <AddTask/>
+
+            <DailyList/>
+
         </main>
 
         <footer>
@@ -19,14 +24,18 @@
 
 <script>
 
-import TheNavigation from '../components/TheNavigation.vue'
-import SelectList from '../components/SelectList.vue'
+import TheNavigation    from '../components/TheNavigation.vue'
+import SelectList       from '../components/SelectList.vue'
+import AddTask          from '../components/AddTask.vue'
+import DailyList        from '../components/DailyList.vue'
 
 export default {
     name: 'DailyTodo',
     components: {
         TheNavigation,
-        SelectList
+        SelectList,
+        AddTask,
+        DailyList
     }
 }
 </script>
