@@ -5,10 +5,10 @@ export default createStore({
 		DailyTodos: {
 			list: [
 				{listname: "test1", cache:[{Tasks: "Aufräumen", finished: false}]},
-				{listname: "test2", cache:[{Tasks: "Aufräumen", finished: false}]},
-				{listname: "test3", cache:[{Tasks: "Aufräumen", finished: false}]},
-				{listname: "test4", cache:[{Tasks: "Aufräumen", finished: false}]},
-				{listname: "test5", cache:[{Tasks: "Aufräumen", finished: false}]},
+				{listname: "test2", cache:[{Tasks: "Saugen", finished: false}]},
+				{listname: "test3", cache:[{Tasks: "lernen", finished: false}]},
+				{listname: "test4", cache:[{Tasks: "Arbeiten", finished: false}]},
+				{listname: "test5", cache:[{Tasks: "Schlafen", finished: false}]},
 			]
 		},
 
@@ -17,8 +17,8 @@ export default createStore({
 	getters: {
         getListName(state) {
 			var buffer = []; 
-			for(var i=0; i<state.DailyTodos.list.length; i++) {
-				buffer.push(state.DailyTodos.list[i].listname);
+			for(var i=0; i<state.DailyTodos.list[state.listNumber].cache.length; i++) {
+				buffer.push(state.DailyTodos.list[state.listNumber].cache[i]);
 			}
 			return buffer;
 		}
@@ -104,6 +104,14 @@ export default createStore({
         setNewTask(state, newTask) {
             state.DailyTodos.list[state.listNumber].cache.push({Tasks: newTask, finished: false});
         },
+
+        toggleListItem(state, item) {
+            item.finished = !item.finished;
+        },
+
+        deleteItem(state, index) {
+            state.DailyTodos.list[state.listNumber].cache.splice(index, 1);
+        }
 	},
 
 	actions: {},
