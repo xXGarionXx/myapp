@@ -42,4 +42,7 @@ export default {
 
 <style lang="less" scoped>
 
+.DailyTodo {
+    background: white;
+}
 </style>

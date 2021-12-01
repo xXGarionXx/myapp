@@ -44,6 +44,7 @@ export default {
 
 .DailyList {
     margin: 1rem;
+    background: white;
 }
 
 li {

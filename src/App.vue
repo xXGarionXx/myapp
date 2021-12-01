@@ -5,6 +5,10 @@
 <style lang="less">
 @backgroundColor: #fa8072;
 
+#body {
+    //background-color: #2c3e50;
+}
+
 #app,*,*::after,*::before {
     box-sizing: border-box;
     margin: 0;
