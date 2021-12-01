@@ -2,7 +2,7 @@
     <section class="AddTask">
         <header class="row">
             <div>
-                <h3 class="mt-5">Tasks</h3>
+                <h3 class="mt-3">Tasks</h3>
             </div>
         </header>
 
@@ -20,9 +20,6 @@
                 <button class="btn btn-primary addButtonSettings" type="button" @click="setNewTask">Add Task</button>
             </div>
         </div>
-
-
-
     </section>
 </template>
 

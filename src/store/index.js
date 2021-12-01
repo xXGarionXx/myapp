@@ -2,15 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
 	state: {
-		DailyTodos: {
-			list: [
-				{listname: "test1", cache:[{Tasks: "Aufräumen", finished: false}]},
-				{listname: "test2", cache:[{Tasks: "Saugen", finished: false}]},
-				{listname: "test3", cache:[{Tasks: "lernen", finished: false}]},
-				{listname: "test4", cache:[{Tasks: "Arbeiten", finished: false}]},
-				{listname: "test5", cache:[{Tasks: "Schlafen", finished: false}]},
-			]
-		},
+		DailyTodos: {list: []},
 
         listNumber: 0,
 	},
@@ -59,6 +51,7 @@ export default createStore({
                 }
             }
             //console.log(JSON.stringify("vor dem Speichern sehe ich so aus: " + this.todos));
+            test(state.DailyTodos);
 		},
 
         selectListItem(state, listItem)
@@ -74,6 +67,7 @@ export default createStore({
                 }
             }
             //this.setDataAtBrowsercache();
+            test(state.DailyTodos);
     
         },
     
@@ -97,25 +91,48 @@ export default createStore({
                     }
                     state.DailyTodos.list.splice(deleteListNumber, 1);
                 }
+                test(state.DailyTodos);
                 //this.setDataAtBrowsercache();
             }
         },
 
         setNewTask(state, newTask) {
             state.DailyTodos.list[state.listNumber].cache.push({Tasks: newTask, finished: false});
+            test(state.DailyTodos);
         },
 
         toggleListItem(state, item) {
             item.finished = !item.finished;
+            test(state.DailyTodos);
         },
 
         deleteItem(state, index) {
             state.DailyTodos.list[state.listNumber].cache.splice(index, 1);
+            test(state.DailyTodos);
+        },
+
+        getDataFromBrowsercache(state) {
+            if(localStorage.getItem('DailyTodo') === null) {
+                state.DailyTodos = {list: [{listname: "", cache:[]}]};
+            }
+            else {
+                var data = localStorage.getItem('DailyTodo');
+                state.DailyTodos = JSON.parse(data);
+            }
         }
+
 	},
 
-	actions: {},
+	actions: {
+
+    },
 
 	modules: {},
 });
+
+function test(setData) {
+    var data = JSON.stringify(setData);
+    console.log(data);
+    localStorage.setItem("DailyTodo", data);
+}
 

@@ -36,13 +36,18 @@ export default {
         SelectList,
         AddTask,
         DailyList
-    }
+    },
+
+    beforeMount: 
+        async function getDataFromBrowsercache() {
+            this.$store.commit('getDataFromBrowsercache');
+        }
+    
 }
+
 </script>
 
 <style lang="less" scoped>
 
-.DailyTodo {
-    background: white;
-}
+
 </style>

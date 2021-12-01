@@ -3,10 +3,11 @@
 </template>
 
 <style lang="less">
-@backgroundColor: #fa8072;
+//@backgroundColor: #fa8072;
+@backgroundColor: #c8c8c8;
 
 #body {
-    //background-color: #2c3e50;
+    background-color: @backgroundColor;
 }
 
 #app,*,*::after,*::before {
