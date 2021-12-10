@@ -74,7 +74,6 @@ export default {
             this.currentList = this.$store.state.DailyTodos.list[0].listname;
         },
         async function() {
-
         },
 
     methods: {
